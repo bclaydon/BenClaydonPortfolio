@@ -521,13 +521,13 @@
           <span style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8C8E92">Phone</span>
           <span style="font-family:Archivo,Helvetica,Arial,sans-serif;font-size:clamp(18px,2.2vw,24px);letter-spacing:-.02em">403 519 8525</span>
         </a>
-        <a href="{{ linkedinUrl }}" style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:20px 0;border-top:1px solid #D8DFE3" style-hover="color:#3F7340">
+        <a href="{{ linkedinUrl }}" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:20px 0;border-top:1px solid #D8DFE3" style-hover="color:#3F7340">
           <span style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8C8E92">LinkedIn</span>
           <span style="font-family: Archivo,Helvetica,Arial,sans-serif; font-size: clamp(18px,2.2vw,24px); letter-spacing: -.02em; color: #3F7340">Visit Page</span>
         </a>
-        <a href="Ben-Claydon-Resume.pdf" style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:20px 0;border-top:1px solid #D8DFE3;border-bottom:1px solid #D8DFE3" style-hover="color:#3F7340">
+        <a href="Ben-Claydon-Resume.pdf" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:20px 0;border-top:1px solid #D8DFE3;border-bottom:1px solid #D8DFE3" style-hover="color:#3F7340">
           <span style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8C8E92">Résumé</span>
-          <span style="font-family: Archivo,Helvetica,Arial,sans-serif; font-size: clamp(18px,2.2vw,24px); letter-spacing: -.02em; color: #3F7340">Download PDF</span>
+          <span style="font-family: Archivo,Helvetica,Arial,sans-serif; font-size: clamp(18px,2.2vw,24px); letter-spacing: -.02em; color: #3F7340">View PDF</span>
         </a>
       </div>
     </div>
@@ -555,7 +555,7 @@
   </footer>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280},&quot;fontPair&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Technical — Archivo / IBM Plex Sans&quot;,&quot;Geometric — Space Grotesk / Work Sans&quot;,&quot;Editorial — Source Serif / IBM Plex Sans&quot;,&quot;Rounded — Manrope&quot;,&quot;Industrial — Chivo / Work Sans&quot;],&quot;default&quot;:&quot;Technical — Archivo / IBM Plex Sans&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Type&quot;},&quot;showAvailability&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;About&quot;},&quot;availability&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Available for co-op — January 2026&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;About&quot;},&quot;linkedinUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280},&quot;fontPair&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Technical — Archivo / IBM Plex Sans&quot;,&quot;Geometric — Space Grotesk / Work Sans&quot;,&quot;Editorial — Source Serif / IBM Plex Sans&quot;,&quot;Rounded — Manrope&quot;,&quot;Industrial — Chivo / Work Sans&quot;],&quot;default&quot;:&quot;Technical — Archivo / IBM Plex Sans&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Type&quot;},&quot;showAvailability&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;About&quot;},&quot;availability&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Available for co-op — January 2026&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;About&quot;},&quot;linkedinUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://www.linkedin.com/in/ben-claydon-003432274/&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;}}">
 class Component extends DCLogic {
   state = { page: "home" };
 
@@ -732,7 +732,7 @@ class Component extends DCLogic {
   }
 
   linkedin() {
-    const u = (this.props.linkedinUrl || "").trim();
+    const u = (this.props.linkedinUrl || "https://www.linkedin.com/in/ben-claydon-003432274/").trim();
     if (!u) return "#";
     return /^https?:\/\//i.test(u) ? u : "https://" + u.replace(/^\/+/, "");
   }
