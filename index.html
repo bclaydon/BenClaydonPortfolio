@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500&amp;family=Space+Grotesk:wght@400;500&amp;family=Work+Sans:wght@400;500&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&amp;family=Manrope:wght@400;500;600&amp;family=Chivo:wght@400;500&amp;display=swap">
+<style>
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#F2F4F5;color:#17181A;font-family:"IBM Plex Sans",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  *,*::before,*::after{box-sizing:border-box}
+  a{color:#17181A;text-decoration:none}
+  a:hover{color:#3F7340}
+  ::selection{background:#579C57;color:#FFFFFF}
+  :focus-visible{outline:1px solid #579C57;outline-offset:4px}
+</style>
+</helmet>
+<div style="width:100%;min-height:100vh;background:#F2F4F5">
+
+  <nav style="position:sticky;top:0;z-index:60;background:rgba(242,244,245,.88);backdrop-filter:blur(12px);border-bottom:1px solid #579C57">
+    <div style="max-width:1180px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:20px">
+      <button onClick="{{ goHome }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:Archivo,Helvetica,Arial,sans-serif;font-size:15px;font-weight:500;letter-spacing:-.01em;color:#17181A">Ben Claydon</button>
+      <div style="display:flex;gap:4px;align-items:center">
+        <button onClick="{{ goHome }}" style="background:none;border:0;cursor:pointer;padding:8px 14px;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:{{ homeColor }}" style-hover="color:#17181A">Home</button>
+        <button onClick="{{ goAbout }}" style="background:none;border:0;cursor:pointer;padding:8px 14px;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:{{ aboutColor }}" style-hover="color:#17181A">About</button>
+        <button onClick="{{ goProjects }}" style="background:none;border:0;cursor:pointer;padding:8px 14px;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:{{ projectsColor }}" style-hover="color:#17181A">Projects</button>
+        <button onClick="{{ goContact }}" style="background:none;border:0;cursor:pointer;padding:8px 14px;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:{{ contactColor }}" style-hover="color:#17181A">Contact</button>
+      </div>
+    </div>
+  </nav>
+
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+  <main style="max-width:1180px;margin:0 auto;padding:0 32px">
+    <section style="padding:9vh 0 12vh;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:64px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:34px">
+        <div>
+          <p style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#3F7340;margin:0 0 18px;line-height:1.7">Mechanical engineering<br>University of Victoria</p>
+          <h1 style="font-family:Archivo,Helvetica,Arial,sans-serif;font-size:clamp(46px,8.5vw,104px);font-weight:400;letter-spacing:-.04em;line-height:.98;margin:0;white-space:nowrap">Ben Claydon</h1>
+          <h1 style="font-family:Archivo,Helvetica,Arial,sans-serif;font-size:clamp(46px,8.5vw,104px);font-weight:400;letter-spacing:-.04em;line-height:.98;margin:0;color:#579C57">Portfolio</h1>
+        </div>
+        <nav style="display:flex;flex-direction:column;max-width:420px;border-top:1px solid #D8DFE3">
+      <button onClick="{{ goAbout }}" style="background:none;border:0;border-bottom:1px solid #D8DFE3;padding:16px 0;cursor:pointer;text-align:left;display:flex;align-items:baseline;justify-content:space-between;gap:20px;width:100%;font-family:Archivo,Helvetica,Arial,sans-serif;font-size:clamp(20px,2.4vw,26px);font-weight:400;letter-spacing:-.02em;color:#17181A" style-hover="color:#3F7340">About<span style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#579C57">→</span></button>
+      <button onClick="{{ goProjects }}" style="background:none;border:0;border-bottom:1px solid #D8DFE3;padding:16px 0;cursor:pointer;text-align:left;display:flex;align-items:baseline;justify-content:space-between;gap:20px;width:100%;font-family:Archivo,Helvetica,Arial,sans-serif;font-size:clamp(20px,2.4vw,26px);font-weight:400;letter-spacing:-.02em;color:#17181A" style-hover="color:#3F7340">Projects<span style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#579C57">→</span></button>
+      <button onClick="{{ goContact }}" style="background:none;border:0;border-bottom:1px solid #D8DFE3;padding:16px 0;cursor:pointer;text-align:left;display:flex;align-items:baseline;justify-content:space-between;gap:20px;width:100%;font-family:Archivo,Helvetica,Arial,sans-serif;font-size:clamp(20px,2.4vw,26px);font-weight:400;letter-spacing:-.02em;color:#17181A" style-hover="color:#3F7340">Contact<span style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#579C57">→</span></button>
+        </nav>
+      </div>
+      <div style="justify-self:end;width:100%;max-width:400px;aspect-ratio:4/5;border:1px solid #D8DFE3;background:#EEF1F3;overflow:hidden">
+        <img src="images/portrait.jpg" alt="Ben Claydon on site" style="width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block">
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isAbout }}">
+  <main style="max-width:1180px;margin:0 auto;padding:0 32px">
+    <section style="padding:8vh 0 10vh;display:flex;flex-direction:column;gap:26px">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <p style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;margin:0">Mechanical engineering · University of Victoria</p>
+        <h1 style="font-family:Archivo,Helvetica,Arial,sans-serif;font-size:clamp(40px,6vw,68px);font-weight:400;letter-spacing:-.035em;line-height:1.03;margin:0">Ben Claydon</h1>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:22px">
+        <p style="font-size:clamp(16.5px,1.7vw,18px);line-height:1.6;color:#3A3C40;margin:0;text-wrap:pretty">I am a mechanical engineering student at the University of Victoria. My passion is solving problems through creative design and the pursuit of excellence in my work.</p>
+        <p style="font-size:clamp(16.5px,1.7vw,18px);line-height:1.6;color:#3A3C40;margin:0;text-wrap:pretty">I have 15 months of real-world work experience across three co-op terms in remediation equipment manufacturing, building science, and environmental field work, designing and 3D printing equipment, producing SolidWorks models and drawings, and assessing building enclosures in the field. I am looking for a mechanical, manufacturing, or mechatronics position.</p>
+      </div>
+    </section>
+
+    <section data-reveal="" style="transition:opacity .7s ease,transform .7s ease;padding-bottom:9vh;border-bottom:1px solid #D8DFE3">
+      <dl style="margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:0 56px;align-content:start">
+        <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+          <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8C8E92;width:110px;flex:none;padding-top:3px">Status</dt>
+          <dd style="margin:0;font-size:15px"><sc-if value="{{ showAvailability }}" hint-placeholder-val="{{ true }}">{{ availability }}</sc-if></dd>
+        </div>
+        <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+          <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8C8E92;width:110px;flex:none;padding-top:3px">Based</dt>
+          <dd style="margin:0;font-size:15px">Victoria, BC &amp; Calgary, AB</dd>
+        </div>
+        <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+          <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8C8E92;width:110px;flex:none;padding-top:3px">Design</dt>
+          <dd style="margin:0;font-size:15px">SolidWorks, Mastercam, drawings &amp; GD&amp;T, rendering</dd>
+        </div>
+        <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+          <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8C8E92;width:110px;flex:none;padding-top:3px">Analysis</dt>
+          <dd style="margin:0;font-size:15px">MATLAB, FEA, vibration &amp; modal, hydrostatics</dd>
+        </div>
+        <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+          <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8C8E92;width:110px;flex:none;padding-top:3px">Code</dt>
+          <dd style="margin:0;font-size:15px">C, C++, VBA, ROS 2, Docker, Linux</dd>
+        </div>
+        <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+          <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8C8E92;width:110px;flex:none;padding-top:3px">Shop</dt>
+          <dd style="margin:0;font-size:15px">Manual &amp; CNC machining, FDM printing, fabrication</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section data-reveal="" style="transition:opacity .7s ease,transform .7s ease;padding:7vh 0 9vh">
+      <p style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;margin:0 0 22px">Experience</p>
+      <div style="display:grid;gap:0">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;padding:28px 0;border-top:1px solid #D8DFE3">
+          <div>
+            <h3 style="font-family:Archivo,Helvetica,Arial,sans-serif;font-size:19px;font-weight:500;letter-spacing:-.015em;margin:0 0 4px">Co-op Student</h3>
+            <p style="margin:0;color:#6E7076;font-size:15px">Sequoia Environmental Remediation</p>
+            <p style="margin:6px 0 0;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;color:#8C8E92">Jun — Dec 2025 · Calgary</p>
+          </div>
+          <p style="margin:0;color:#3A3C40;font-size:15.5px;max-width:60ch">Redesigned a pump control system around a voltage boost converter for deeper pumping. Designed and 3D printed a chemical injection system model, a handheld GPS mount, and an IR transmitter shield. Produced SolidWorks models, drawings and renders for a custom air purification system.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;padding:28px 0;border-top:1px solid #D8DFE3">
+          <div>
+            <h3 style="font-family:Archivo,Helvetica,Arial,sans-serif;font-size:19px;font-weight:500;letter-spacing:-.015em;margin:0 0 4px">Co-op Student</h3>
+            <p style="margin:0;color:#6E7076;font-size:15px">RJC Engineers</p>
+            <p style="margin:6px 0 0;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;color:#8C8E92">May — Aug 2024 · Victoria</p>
+          </div>
+          <p style="margin:0;color:#3A3C40;font-size:15.5px;max-width:60ch">Wrote a VBA tool that auto-formats 10-page meeting minutes, cutting editing time 30%. Introduced drone imaging for roof assessments. Ran on-site enclosure assessments, air tightness and water penetration testing.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;padding:28px 0;border-top:1px solid #D8DFE3">
+          <div>
+            <h3 style="font-family:Archivo,Helvetica,Arial,sans-serif;font-size:19px;font-weight:500;letter-spacing:-.015em;margin:0 0 4px">Junior Technician</h3>
+            <p style="margin:0;color:#6E7076;font-size:15px">EnviroSearch Ltd.</p>
+            <p style="margin:6px 0 0;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;color:#8C8E92">May — Sep 2023 · Calgary</p>
+          </div>
+          <p style="margin:0;color:#3A3C40;font-size:15.5px;max-width:60ch">Sampled groundwater across rural Alberta sites with peristaltic and inertial pumps to SOP. Developed a 20-site well repair project and proposed a new calcium peroxide deployment method for changing water tables.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;padding:28px 0;border-top:1px solid #D8DFE3;border-bottom:1px solid #D8DFE3">
+          <div>
+            <h3 style="font-family:Archivo,Helvetica,Arial,sans-serif;font-size:19px;font-weight:500;letter-spacing:-.015em;margin:0 0 4px">Vice President &amp; Team Lead</h3>
+            <p style="margin:0;color:#6E7076;font-size:15px">Connected &amp; Autonomous Vehicle Club</p>
+            <p style="margin:6px 0 0;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;color:#8C8E92">Sep 2024 — 2025 · UVic</p>
+          </div>
+          <p style="margin:0;color:#3A3C40;font-size:15.5px;max-width:60ch">Managed the team that converted 1/10 scale RC cars into autonomous vehicles. Four IEEE F1Tenth awards, including Champion and two Technical Excellence awards.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isProjects }}">
+  <main style="max-width:1180px;margin:0 auto;padding:0 32px">
+    <section style="padding:8vh 0 5vh">
+      <p style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;margin:0 0 22px">Projects</p>
+      <h1 style="font-family:Archivo,Helvetica,Arial,sans-serif;font-size:clamp(32px,4.6vw,54px);font-weight:400;letter-spacing:-.035em;line-height:1.05;margin:0;max-width:22ch">Six selected projects</h1>
+    </section>
+    <section data-reveal="" style="transition:opacity .7s ease,transform .7s ease;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;padding-bottom:12vh">
+      <button onClick="{{ open0 }}" style="position:relative;display:block;width:100%;aspect-ratio:4/3;padding:0;border:1px solid #D8DFE3;background:#3E525F;cursor:pointer;overflow:hidden;text-align:left">
+        <img src="images/sorter-still.png" alt="Part sorting automated system" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+        <span style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:22px;background:linear-gradient(to top,rgba(22,36,45,.86) 0%,rgba(30,48,60,.38) 52%,rgba(72,78,82,.16) 100%);transition:background .35s ease" style-hover="background:linear-gradient(to top,rgba(19,32,40,.92) 0%,rgba(78,102,117,.72) 52%,rgba(72,78,82,.6) 100%)">
+          <span style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(238,244,247,.82)">01 — Mechatronics</span>
+          <span style="font-family:Archivo,Helvetica,Arial,sans-serif;font-size:clamp(19px,1.8vw,23px);font-weight:400;letter-spacing:-.02em;line-height:1.15;color:#F7F7F5">Part sorting automated system</span>
+        </span>
+      </button>
+      <button onClick="{{ open1 }}" style="position:relative;display:block;width:100%;aspect-ratio:4/3;padding:0;border:1px solid #D8DFE3;background:linear-gradient(150deg,#5C7484 0%,#3E525F 100%);cursor:pointer;overflow:hidden;text-align:left">
+        <img src="images/chem-skid-hero.jpg" alt="Chemical injection skid model" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+        <span style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:22px;background:linear-gradient(to top,rgba(22,36,45,.86) 0%,rgba(30,48,60,.38) 52%,rgba(72,78,82,.16) 100%);transition:background .35s ease" style-hover="background:linear-gradient(to top,rgba(19,32,40,.92) 0%,rgba(78,102,117,.72) 52%,rgba(72,78,82,.6) 100%)">
+          <span style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(238,244,247,.82)">02 — CAD &amp; additive</span>
+          <span style="font-family:Archivo,Helvetica,Arial,sans-serif;font-size:clamp(19px,1.8vw,23px);font-weight:400;letter-spacing:-.02em;line-height:1.15;color:#F7F7F5">Chemical injection skid model</span>
+        </span>
+      </button>
+      <button onClick="{{ open2 }}" style="position:relative;display:block;width:100%;aspect-ratio:4/3;padding:0;border:1px solid #D8DFE3;background:linear-gradient(150deg,#5C7484 0%,#3E525F 100%);cursor:pointer;overflow:hidden;text-align:left">
+        <img src="images/purifier-enclosed.png" alt="Air purifier" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+        <span style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:22px;background:linear-gradient(to top,rgba(22,36,45,.86) 0%,rgba(30,48,60,.38) 52%,rgba(72,78,82,.16) 100%);transition:background .35s ease" style-hover="background:linear-gradient(to top,rgba(19,32,40,.92) 0%,rgba(78,102,117,.72) 52%,rgba(72,78,82,.6) 100%)">
+          <span style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(238,244,247,.82)">03 — CAD &amp; rendering</span>
+          <span style="font-family:Archivo,Helvetica,Arial,sans-serif;font-size:clamp(19px,1.8vw,23px);font-weight:400;letter-spacing:-.02em;line-height:1.15;color:#F7F7F5">Air purifier</span>
+        </span>
+      </button>
+      <button onClick="{{ open3 }}" style="position:relative;display:block;width:100%;aspect-ratio:4/3;padding:0;border:1px solid #D8DFE3;background:linear-gradient(150deg,#5C7484 0%,#3E525F 100%);cursor:pointer;overflow:hidden;text-align:left">
+        <img src="images/knob-render.jpg" alt="Ergonomic shift knob — CAD and 3-axis CNC milling" loading="lazy" style="position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:auto;height:auto;max-width:224px;max-height:74%;display:block">
+        <span style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:22px;background:linear-gradient(to top,rgba(22,36,45,.86) 0%,rgba(30,48,60,.38) 52%,rgba(72,78,82,.16) 100%);transition:background .35s ease" style-hover="background:linear-gradient(to top,rgba(19,32,40,.92) 0%,rgba(78,102,117,.72) 52%,rgba(72,78,82,.6) 100%)">
+          <span style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(238,244,247,.82)">04 — Design for manufacture</span>
+          <span style="font-family:Archivo,Helvetica,Arial,sans-serif;font-size:clamp(19px,1.8vw,23px);font-weight:400;letter-spacing:-.02em;line-height:1.15;color:#F7F7F5">Ergonomic shift knob — CAD and 3-axis CNC milling</span>
+        </span>
+      </button>
+      <button onClick="{{ open4 }}" style="position:relative;display:block;width:100%;aspect-ratio:4/3;padding:0;border:1px solid #D8DFE3;background:linear-gradient(150deg,#5C7484 0%,#3E525F 100%);cursor:pointer;overflow:hidden;text-align:left">
+        <img src="images/cav-car.jpg" alt="1/10 scale self-driving race car" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+        <span style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:22px;background:linear-gradient(to top,rgba(22,36,45,.86) 0%,rgba(30,48,60,.38) 52%,rgba(72,78,82,.16) 100%);transition:background .35s ease" style-hover="background:linear-gradient(to top,rgba(19,32,40,.92) 0%,rgba(78,102,117,.72) 52%,rgba(72,78,82,.6) 100%)">
+          <span style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(238,244,247,.82)">05 — Autonomous vehicles</span>
+          <span style="font-family:Archivo,Helvetica,Arial,sans-serif;font-size:clamp(19px,1.8vw,23px);font-weight:400;letter-spacing:-.02em;line-height:1.15;color:#F7F7F5">1/10 scale self-driving race car</span>
+        </span>
+      </button>
+      <button onClick="{{ open5 }}" style="position:relative;display:block;width:100%;aspect-ratio:4/3;padding:0;border:1px solid #D8DFE3;background:linear-gradient(150deg,#5C7484 0%,#3E525F 100%);cursor:pointer;overflow:hidden;text-align:left">
+        <img src="images/table-finished2.jpg" alt="Architectural coffee table" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+        <span style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:22px;background:linear-gradient(to top,rgba(22,36,45,.86) 0%,rgba(30,48,60,.38) 52%,rgba(72,78,82,.16) 100%);transition:background .35s ease" style-hover="background:linear-gradient(to top,rgba(19,32,40,.92) 0%,rgba(78,102,117,.72) 52%,rgba(72,78,82,.6) 100%)">
+          <span style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(238,244,247,.82)">06 — Design &amp; fabrication</span>
+          <span style="font-family:Archivo,Helvetica,Arial,sans-serif;font-size:clamp(19px,1.8vw,23px);font-weight:400;letter-spacing:-.02em;line-height:1.15;color:#F7F7F5">Architectural coffee table</span>
+        </span>
+      </button>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isP0 }}">
+  <main style="max-width:1180px;margin:0 auto;padding:0 32px">
+    <div style="padding:6vh 0 0">
+      <button onClick="{{ goProjects }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#8C8E92" style-hover="color:#17181A">← All projects</button>
+    </div>
+    <section style="padding:4vh 0 6vh;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:56px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:22px;max-width:52ch">
+        <p style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;margin:0">01 — Mechatronics</p>
+        <h1 style="font-family:Archivo,Helvetica,Arial,sans-serif;font-size:clamp(32px,4.6vw,54px);font-weight:400;letter-spacing:-.035em;line-height:1.05;margin:0">Part sorting automated system</h1>
+        <p style="font-size:clamp(16.5px,1.7vw,18px);line-height:1.6;color:#3A3C40;margin:0;text-wrap:pretty">Final project for MECH 458 (Mechatronics) at UVic, built with Benjamin Kappers. A conveyor carries parts past optical and reflective sensors that classify each one as aluminum, steel, white plastic, or black plastic, then a stepper-driven carousel rotates the matching bin into place before the part drops.</p>
+        <ul style="margin:0;padding:0;list-style:none;display:grid;gap:10px;max-width:62ch">
+          <li style="font-size:15.5px;color:#3A3C40;padding-left:18px;position:relative"><span style="position:absolute;left:0;top:11px;width:8px;height:1px;background:#579C57"></span>Sorted 48 parts in 39 seconds at 98% accuracy in the final demonstration.</li>
+          <li style="font-size:15.5px;color:#3A3C40;padding-left:18px;position:relative"><span style="position:absolute;left:0;top:11px;width:8px;height:1px;background:#579C57"></span>Interrupt-driven state machine in C on an ATmega2560, with a FIFO queue tracking part order between sensing and sorting.</li>
+          <li style="font-size:15.5px;color:#3A3C40;padding-left:18px;position:relative"><span style="position:absolute;left:0;top:11px;width:8px;height:1px;background:#579C57"></span>Materials classified by the lowest ADC reflectance reading against bounds calibrated from repeated test runs.</li>
+          <li style="font-size:15.5px;color:#3A3C40;padding-left:18px;position:relative"><span style="position:absolute;left:0;top:11px;width:8px;height:1px;background:#579C57"></span>Precomputed quintic S-curve stepper profile (Python) to cut mechanical shock and prevent missed steps.</li>
+          <li style="font-size:15.5px;color:#3A3C40;padding-left:18px;position:relative"><span style="position:absolute;left:0;top:11px;width:8px;height:1px;background:#579C57"></span>Tuned belt duty cycle and stepper timing to trade top speed for reliable classification and bin alignment.</li>
+        </ul>
+        <div style="display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center">
+          <a href="media/MECH458-Final-Report.pdf" download="Ben-Claydon-MECH458-Final-Report.pdf" style="display:inline-flex;align-items:center;white-space:nowrap;border:1px solid #3F7340;background:#3F7340;color:#FFFFFF;padding:13px 22px;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase" style-hover="opacity:.85;color:#FFFFFF">Download report (PDF) ↓</a>
+        <button onClick="{{ goContact }}" style="background:none;border:0;padding:0 0 2px;cursor:pointer;text-align:left;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:15.5px;color:#3F7340;border-bottom:1px solid #579C57;width:fit-content" style-hover="border-bottom-color:#3F7340">Questions? Feel free to reach out →</button>
+        </div>
+      </div>
+      <dl style="margin:0;display:grid;gap:0;align-content:start;background:#EEF1F3;border:1px solid #D8DFE3;padding:6px 20px 20px">
+          <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+            <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;width:110px;flex:none;padding-top:3px">Course</dt>
+            <dd style="margin:0;font-size:15px">MECH 458 Mechatronics, University of Victoria</dd>
+          </div>
+          <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+            <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;width:110px;flex:none;padding-top:3px">Team</dt>
+            <dd style="margin:0;font-size:15px">Ben Claydon, Benjamin Kappers</dd>
+          </div>
+          <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+            <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;width:110px;flex:none;padding-top:3px">Controller</dt>
+            <dd style="margin:0;font-size:15px">ATmega2560, C</dd>
+          </div>
+          <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+            <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;width:110px;flex:none;padding-top:3px">Sensing</dt>
+            <dd style="margin:0;font-size:15px">2 optical, analog reflective, Hall effect</dd>
+          </div>
+          <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+            <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;width:110px;flex:none;padding-top:3px">Actuation</dt>
+            <dd style="margin:0;font-size:15px">PWM DC conveyor motor, stepper carousel</dd>
+          </div>
+          <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+            <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;width:110px;flex:none;padding-top:3px">Result</dt>
+            <dd style="margin:0;font-size:15px">48 parts · 39 s · 98% accuracy</dd>
+          </div>
+      </dl>
+    </section>
+    <section style="display:grid;gap:44px;padding-bottom:8vh">
+        <figure style="margin:0;display:grid;gap:10px;max-width:66%">
+          <div style="border:1px solid #D8DFE3;background:#EEF1F3;overflow:hidden"><video data-autoplay="" src="media/part-sorter.mp4" poster="images/sorter-still.png" preload="auto" style="width:100%;height:auto;aspect-ratio:16/9;display:block;background:#1B242A;color:#EEF1F3;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:14px">Your browser cannot play this video. <a href="media/part-sorter.mp4" style="color:#EEF1F3">Download the clip</a> instead.</video></div>
+          <figcaption style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12.5px;letter-spacing:.06em;color:#8C8E92">Sorting cycle, recorded end to end</figcaption>
+        </figure>
+    </section>
+    <section style="border-top:1px solid #D8DFE3;padding:26px 0 12vh;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <button onClick="{{ goProjects }}" style="border:1px solid #579C57;background:none;cursor:pointer;padding:13px 22px;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#17181A" style-hover="border-color:#17181A">← Back to projects</button>
+      <button onClick="{{ open1 }}" style="border:1px solid #3F7340;background:#3F7340;color:#FFFFFF;cursor:pointer;padding:13px 22px;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase" style-hover="opacity:.85">Next — Chemical injection skid model →</button>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isP1 }}">
+  <main style="max-width:1180px;margin:0 auto;padding:0 32px">
+    <div style="padding:6vh 0 0">
+      <button onClick="{{ goProjects }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#8C8E92" style-hover="color:#17181A">← All projects</button>
+    </div>
+    <section style="padding:4vh 0 6vh;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:56px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:22px;max-width:52ch">
+        <p style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;margin:0">02 — CAD &amp; additive</p>
+        <h1 style="font-family:Archivo,Helvetica,Arial,sans-serif;font-size:clamp(32px,4.6vw,54px);font-weight:400;letter-spacing:-.035em;line-height:1.05;margin:0">Chemical injection skid model</h1>
+        <p style="font-size:clamp(16.5px,1.7vw,18px);line-height:1.6;color:#3A3C40;margin:0">Built during my co-op at Sequoia Environmental Remediation: a detailed CAD model of a chemical injection skid, 3D printed as a scale display piece for marketing conferences.</p>
+        <ul style="margin:0;padding:0;list-style:none;display:grid;gap:10px;max-width:62ch">
+          <li style="font-size:15.5px;color:#3A3C40;padding-left:18px;position:relative"><span style="position:absolute;left:0;top:11px;width:8px;height:1px;background:#579C57"></span>Modelled to communicate how the system works to a non-technical audience.</li>
+          <li style="font-size:15.5px;color:#3A3C40;padding-left:18px;position:relative"><span style="position:absolute;left:0;top:11px;width:8px;height:1px;background:#579C57"></span>Geometry adapted for FDM: wall thickness, part splits, and print orientation set by the process.</li>
+          <li style="font-size:15.5px;color:#3A3C40;padding-left:18px;position:relative"><span style="position:absolute;left:0;top:11px;width:8px;height:1px;background:#579C57"></span>Printed in multiple colours so process lines and vessels read at a glance.</li>
+        </ul>
+        <button onClick="{{ goContact }}" style="background:none;border:0;padding:0 0 2px;cursor:pointer;text-align:left;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:15.5px;color:#3F7340;border-bottom:1px solid #579C57;width:fit-content" style-hover="border-bottom-color:#3F7340">Questions? Feel free to reach out →</button>
+      </div>
+      <dl style="margin:0;display:grid;gap:0;align-content:start;background:#EEF1F3;border:1px solid #D8DFE3;padding:6px 20px 20px">
+          <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+            <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;width:110px;flex:none;padding-top:3px">Context</dt>
+            <dd style="margin:0;font-size:15px">Co-op — Sequoia Environmental Remediation</dd>
+          </div>
+          <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+            <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;width:110px;flex:none;padding-top:3px">Process</dt>
+            <dd style="margin:0;font-size:15px">SolidWorks → FDM printing</dd>
+          </div>
+          <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+            <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;width:110px;flex:none;padding-top:3px">Use</dt>
+            <dd style="margin:0;font-size:15px">Conference display and sales tool</dd>
+          </div>
+      </dl>
+    </section>
+    <section style="display:grid;gap:44px;padding-bottom:8vh">
+        <figure style="margin:0;display:grid;gap:10px;max-width:66%">
+          <div style="border:1px solid #D8DFE3;background:#EEF1F3;overflow:hidden"><img src="images/chem-skid-hero.jpg" alt="The printed model, assembled with flexible tubing" loading="lazy" style="width:100%;height:auto;display:block"></div>
+          <figcaption style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12.5px;letter-spacing:.06em;color:#8C8E92">The printed model, assembled with flexible tubing</figcaption>
+        </figure>
+        <figure style="margin:0;display:grid;gap:10px;max-width:66%">
+          <div style="border:1px solid #D8DFE3;background:#EEF1F3;overflow:hidden"><img src="images/chem-skid-cad.jpg" alt="The SolidWorks assembly the model was printed from" loading="lazy" style="width:100%;height:auto;display:block"></div>
+          <figcaption style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12.5px;letter-spacing:.06em;color:#8C8E92">The SolidWorks assembly the model was printed from</figcaption>
+        </figure>
+    </section>
+    <section style="border-top:1px solid #D8DFE3;padding:26px 0 12vh;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <button onClick="{{ goProjects }}" style="border:1px solid #579C57;background:none;cursor:pointer;padding:13px 22px;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#17181A" style-hover="border-color:#17181A">← Back to projects</button>
+      <button onClick="{{ open2 }}" style="border:1px solid #3F7340;background:#3F7340;color:#FFFFFF;cursor:pointer;padding:13px 22px;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase" style-hover="opacity:.85">Next — Air purifier →</button>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isP2 }}">
+  <main style="max-width:1180px;margin:0 auto;padding:0 32px">
+    <div style="padding:6vh 0 0">
+      <button onClick="{{ goProjects }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#8C8E92" style-hover="color:#17181A">← All projects</button>
+    </div>
+    <section style="padding:4vh 0 6vh;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:56px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:22px;max-width:52ch">
+        <p style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;margin:0">03 — CAD &amp; rendering</p>
+        <h1 style="font-family:Archivo,Helvetica,Arial,sans-serif;font-size:clamp(32px,4.6vw,54px);font-weight:400;letter-spacing:-.035em;line-height:1.05;margin:0">Air purifier</h1>
+        <p style="font-size:clamp(16.5px,1.7vw,18px);line-height:1.6;color:#3A3C40;margin:0">A custom air purification system designed during my co-op at Sequoia Environmental Remediation. I was provided with client needs, design requirments, and a first stage design concept.</p>
+        <ul style="margin:0;padding:0;list-style:none;display:grid;gap:10px;max-width:62ch">
+          <li style="font-size:15.5px;color:#3A3C40;padding-left:18px;position:relative"><span style="position: absolute; left: 0px; top: 11px; width: 8px; height: 1px; background: rgb(87, 156, 87);"></span>Conducted online research and consultation with senior engineers, material suppliers, and in-house fabricators to specify all design components and materials.</li><li style="font-size:15.5px;color:#3A3C40;padding-left:18px;position:relative"><span style="position:absolute;left:0;top:11px;width:8px;height:1px;background:#579C57"></span>Modelled the full assembly, from housing and filter stages to fasteners and service access.</li>
+          <li style="font-size:15.5px;color:#3A3C40;padding-left:18px;position:relative"><span style="position:absolute;left:0;top:11px;width:8px;height:1px;background:#579C57"></span>Produced the drawing package used for fabrication.</li>
+          <li style="font-size:15.5px;color:#3A3C40;padding-left:18px;position:relative"><span style="position:absolute;left:0;top:11px;width:8px;height:1px;background:#579C57"></span>Rendered the design for client-facing and marketing material.</li>
+          <li style="font-size:15.5px;color:#3A3C40;padding-left:18px;position:relative"><span style="position:absolute;left:0;top:11px;width:8px;height:1px;background:#579C57"></span>Continued to carry design updates through after the co-op term ended.</li>
+        </ul>
+        <button onClick="{{ goContact }}" style="background:none;border:0;padding:0 0 2px;cursor:pointer;text-align:left;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:15.5px;color:#3F7340;border-bottom:1px solid #579C57;width:fit-content" style-hover="border-bottom-color:#3F7340">Questions? Feel free to reach out →</button>
+      </div>
+      <dl style="margin:0;display:grid;gap:0;align-content:start;background:#EEF1F3;border:1px solid #D8DFE3;padding:6px 20px 20px">
+          <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+            <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;width:110px;flex:none;padding-top:3px">Context</dt>
+            <dd style="margin:0;font-size:15px">Co-op — Sequoia Environmental Remediation</dd>
+          </div>
+          <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+            <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;width:110px;flex:none;padding-top:3px">Scope</dt>
+            <dd style="margin:0;font-size:15px">Design, 3D model, drawings, rendering</dd>
+          </div>
+          <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+            <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;width:110px;flex:none;padding-top:3px">Tools</dt>
+            <dd style="margin:0;font-size:15px">SolidWorks, SolidWorks Visualize</dd>
+          </div>
+      </dl>
+    </section>
+    <section style="display:grid;gap:44px;padding-bottom:8vh">
+        <figure style="margin:0;display:grid;gap:10px;max-width:66%">
+          <div style="border:1px solid #D8DFE3;background:#EEF1F3;overflow:hidden"><img src="images/purifier-enclosed.png" alt="The enclosed unit — sheet metal housing, control box and castors" loading="lazy" style="width:100%;height:auto;display:block"></div>
+          <figcaption style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12.5px;letter-spacing:.06em;color:#8C8E92">The enclosed unit — sheet metal housing, control box and castors</figcaption>
+        </figure>
+        <figure style="margin:0;display:grid;gap:10px;max-width:66%">
+          <div style="border:1px solid #D8DFE3;background:#EEF1F3;overflow:hidden"><img src="images/purifier-frame.png" alt="Internal arrangement: blower, filter vessels and ducting on a welded frame" loading="lazy" style="width:100%;height:auto;display:block"></div>
+          <figcaption style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12.5px;letter-spacing:.06em;color:#8C8E92">Internal arrangement: blower, filter vessels and ducting on a welded frame</figcaption>
+        </figure>
+    </section>
+    <section style="border-top:1px solid #D8DFE3;padding:26px 0 12vh;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <button onClick="{{ goProjects }}" style="border:1px solid #579C57;background:none;cursor:pointer;padding:13px 22px;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#17181A" style-hover="border-color:#17181A">← Back to projects</button>
+      <button onClick="{{ open3 }}" style="border:1px solid #3F7340;background:#3F7340;color:#FFFFFF;cursor:pointer;padding:13px 22px;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase" style-hover="opacity:.85">Next — Ergonomic shift knob — CAD and 3-axis CNC milling →</button>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isP3 }}">
+  <main style="max-width:1180px;margin:0 auto;padding:0 32px">
+    <div style="padding:6vh 0 0">
+      <button onClick="{{ goProjects }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#8C8E92" style-hover="color:#17181A">← All projects</button>
+    </div>
+    <section style="padding:4vh 0 6vh;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:56px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:22px;max-width:52ch">
+        <p style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;margin:0">04 — Design for manufacture</p>
+        <h1 style="font-family:Archivo,Helvetica,Arial,sans-serif;font-size:clamp(32px,4.6vw,54px);font-weight:400;letter-spacing:-.035em;line-height:1.05;margin:0">Ergonomic shift knob — CAD and 3-axis CNC milling</h1>
+        <p style="font-size:clamp(16.5px,1.7vw,18px);line-height:1.6;color:#3A3C40;margin:0">An ergonomic replacement shift knob designed for machining rather than printing: a two-piece 303 stainless assembly with push-on retention that can be removed for service.</p>
+        <ul style="margin:0;padding:0;list-style:none;display:grid;gap:10px;max-width:62ch">
+          <li style="font-size:15.5px;color:#3A3C40;padding-left:18px;position:relative"><span style="position:absolute;left:0;top:11px;width:8px;height:1px;background:#579C57"></span>Split into two pieces so each half can be machined in a single setup, avoiding fourth-axis work.</li>
+          <li style="font-size:15.5px;color:#3A3C40;padding-left:18px;position:relative"><span style="position:absolute;left:0;top:11px;width:8px;height:1px;background:#579C57"></span>Push-on retention using a machined groove and spring clip rather than set screws or adhesive.</li>
+          <li style="font-size:15.5px;color:#3A3C40;padding-left:18px;position:relative"><span style="position:absolute;left:0;top:11px;width:8px;height:1px;background:#579C57"></span>Fit governed by the clip groove tolerance rather than the bore.</li>
+          <li style="font-size:15.5px;color:#3A3C40;padding-left:18px;position:relative"><span style="position:absolute;left:0;top:11px;width:8px;height:1px;background:#579C57"></span>Toolpaths programmed in Mastercam and proven out in Vericut before cutting metal.</li>
+        </ul>
+        <button onClick="{{ goContact }}" style="background:none;border:0;padding:0 0 2px;cursor:pointer;text-align:left;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:15.5px;color:#3F7340;border-bottom:1px solid #579C57;width:fit-content" style-hover="border-bottom-color:#3F7340">Questions? Feel free to reach out →</button>
+      </div>
+      <dl style="margin:0;display:grid;gap:0;align-content:start;background:#EEF1F3;border:1px solid #D8DFE3;padding:6px 20px 20px">
+          <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+            <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;width:110px;flex:none;padding-top:3px">Material</dt>
+            <dd style="margin:0;font-size:15px">303 stainless steel</dd>
+          </div>
+          <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+            <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;width:110px;flex:none;padding-top:3px">Process</dt>
+            <dd style="margin:0;font-size:15px">3-axis CNC milling, two-piece assembly</dd>
+          </div>
+          <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+            <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;width:110px;flex:none;padding-top:3px">Tools</dt>
+            <dd style="margin:0;font-size:15px">SolidWorks, Mastercam, Vericut</dd>
+          </div>
+      </dl>
+    </section>
+    <section style="display:grid;gap:44px;padding-bottom:8vh">
+        <figure style="margin:0;display:grid;gap:10px;justify-items:start;max-width:224px">
+          <div style="border:1px solid #D8DFE3;background:#EEF1F3;overflow:hidden;width:100%"><img src="images/knob-render.jpg" alt="CAD render of the finished profile" loading="lazy" style="width:100%;height:auto;display:block"></div>
+          <figcaption style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12.5px;letter-spacing:.06em;color:#8C8E92">CAD render of the finished profile</figcaption>
+        </figure>
+        <figure style="margin:0;display:grid;gap:10px;justify-items:start;max-width:400px">
+          <div style="border:1px solid #D8DFE3;background:#EEF1F3;overflow:hidden;width:100%"><img src="images/knob-vericut.png" alt="Vericut simulation of the machining toolpath" loading="lazy" style="width:100%;height:auto;display:block"></div>
+          <figcaption style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12.5px;letter-spacing:.06em;color:#8C8E92">Vericut simulation of the machining toolpath</figcaption>
+        </figure>
+    </section>
+    <section style="border-top:1px solid #D8DFE3;padding:26px 0 12vh;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <button onClick="{{ goProjects }}" style="border:1px solid #579C57;background:none;cursor:pointer;padding:13px 22px;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#17181A" style-hover="border-color:#17181A">← Back to projects</button>
+      <button onClick="{{ open4 }}" style="border:1px solid #3F7340;background:#3F7340;color:#FFFFFF;cursor:pointer;padding:13px 22px;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase" style-hover="opacity:.85">Next — 1/10 scale self-driving race car →</button>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isP4 }}">
+  <main style="max-width:1180px;margin:0 auto;padding:0 32px">
+    <div style="padding:6vh 0 0">
+      <button onClick="{{ goProjects }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#8C8E92" style-hover="color:#17181A">← All projects</button>
+    </div>
+    <section style="padding:4vh 0 6vh;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:56px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:22px;max-width:52ch">
+        <p style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;margin:0">05 — Autonomous vehicles</p>
+        <h1 style="font-family:Archivo,Helvetica,Arial,sans-serif;font-size:clamp(32px,4.6vw,54px);font-weight:400;letter-spacing:-.035em;line-height:1.05;margin:0">1/10 scale self-driving race car</h1>
+        <p style="font-size:clamp(16.5px,1.7vw,18px);line-height:1.6;color:#3A3C40;margin:0">As club Vice President and team lead, I managed the team that converted 1/10 scale RC cars into autonomous vehicles for the IEEE F1Tenth challenge and developed its control and mapping software.</p>
+        <ul style="margin:0;padding:0;list-style:none;display:grid;gap:10px;max-width:62ch">
+          <li style="font-size:15.5px;color:#3A3C40;padding-left:18px;position:relative"><span style="position:absolute;left:0;top:11px;width:8px;height:1px;background:#579C57"></span>A reactive algorithm that continuously computed and published steering angle and speed from lidar input.</li>
+          <li style="font-size:15.5px;color:#3A3C40;padding-left:18px;position:relative"><span style="position:absolute;left:0;top:11px;width:8px;height:1px;background:#579C57"></span>A SLAM pipeline that mapped the course from lidar data and computed an optimal racing line.</li>
+          <li style="font-size:15.5px;color:#3A3C40;padding-left:18px;position:relative"><span style="position:absolute;left:0;top:11px;width:8px;height:1px;background:#579C57"></span>Led a club restructure to improve technical throughput and member engagement.</li>
+        </ul>
+        <button onClick="{{ goContact }}" style="background:none;border:0;padding:0 0 2px;cursor:pointer;text-align:left;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:15.5px;color:#3F7340;border-bottom:1px solid #579C57;width:fit-content" style-hover="border-bottom-color:#3F7340">Questions? Feel free to reach out →</button>
+      </div>
+      <dl style="margin:0;display:grid;gap:0;align-content:start;background:#EEF1F3;border:1px solid #D8DFE3;padding:6px 20px 20px">
+          <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+            <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;width:110px;flex:none;padding-top:3px">Role</dt>
+            <dd style="margin:0;font-size:15px">Vice President &amp; team lead, 2024 — 2025</dd>
+          </div>
+          <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+            <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;width:110px;flex:none;padding-top:3px">Stack</dt>
+            <dd style="margin:0;font-size:15px">ROS 2, Docker, Ubuntu, C++, lidar</dd>
+          </div>
+          <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+            <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;width:110px;flex:none;padding-top:3px">Results</dt>
+            <dd style="margin:0;font-size:15px">Four IEEE F1Tenth awards, including Champion</dd>
+          </div>
+      </dl>
+    </section>
+    <section style="display:grid;gap:44px;padding-bottom:8vh">
+        <figure style="margin:0;display:grid;gap:10px;max-width:66%">
+          <div style="border:1px solid #D8DFE3;background:#EEF1F3;overflow:hidden"><img src="images/cav-car.jpg" alt="The car — lidar, compute and power on a 1/10 scale chassis" loading="lazy" style="width:100%;height:auto;display:block"></div>
+          <figcaption style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12.5px;letter-spacing:.06em;color:#8C8E92">The car — lidar, compute and power on a 1/10 scale chassis</figcaption>
+        </figure>
+        <figure style="margin:0;display:grid;gap:10px;max-width:66%">
+          <div style="border:1px solid #D8DFE3;background:#EEF1F3;overflow:hidden"><img src="images/cav-race.jpg" alt="Competition track at the IEEE F1Tenth challenge" loading="lazy" style="width:100%;height:auto;display:block"></div>
+          <figcaption style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12.5px;letter-spacing:.06em;color:#8C8E92">Competition track at the IEEE F1Tenth challenge</figcaption>
+        </figure>
+    </section>
+    <section style="border-top:1px solid #D8DFE3;padding:26px 0 12vh;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <button onClick="{{ goProjects }}" style="border:1px solid #579C57;background:none;cursor:pointer;padding:13px 22px;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#17181A" style-hover="border-color:#17181A">← Back to projects</button>
+      <button onClick="{{ open5 }}" style="border:1px solid #3F7340;background:#3F7340;color:#FFFFFF;cursor:pointer;padding:13px 22px;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase" style-hover="opacity:.85">Next — Architectural coffee table →</button>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isP5 }}">
+  <main style="max-width:1180px;margin:0 auto;padding:0 32px">
+    <div style="padding:6vh 0 0">
+      <button onClick="{{ goProjects }}" style="background:none;border:0;padding:0;cursor:pointer;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#8C8E92" style-hover="color:#17181A">← All projects</button>
+    </div>
+    <section style="padding:4vh 0 6vh;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:56px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:22px;max-width:52ch">
+        <p style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;margin:0">06 — Design &amp; fabrication</p>
+        <h1 style="font-family:Archivo,Helvetica,Arial,sans-serif;font-size:clamp(32px,4.6vw,54px);font-weight:400;letter-spacing:-.035em;line-height:1.05;margin:0">Architectural coffee table</h1>
+        <p style="font-size:clamp(16.5px,1.7vw,18px);line-height:1.6;color:#3A3C40;margin:0">A coffee table designed in CAD and built in the shop. Joinery and fit were resolved in the model before any material was cut.</p>
+        <ul style="margin:0;padding:0;list-style:none;display:grid;gap:10px;max-width:62ch">
+          <li style="font-size:15.5px;color:#3A3C40;padding-left:18px;position:relative"><span style="position:absolute;left:0;top:11px;width:8px;height:1px;background:#579C57"></span>Fully defined SolidWorks assembly, including the glass top and the hardware fixing it to the frame.</li>
+          <li style="font-size:15.5px;color:#3A3C40;padding-left:18px;position:relative"><span style="position:absolute;left:0;top:11px;width:8px;height:1px;background:#579C57"></span>Angled cross members cut and finished by hand, then stained before assembly.</li>
+        </ul>
+        <button onClick="{{ goContact }}" style="background:none;border:0;padding:0 0 2px;cursor:pointer;text-align:left;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:15.5px;color:#3F7340;border-bottom:1px solid #579C57;width:fit-content" style-hover="border-bottom-color:#3F7340">Questions? Feel free to reach out →</button>
+      </div>
+      <dl style="margin:0;display:grid;gap:0;align-content:start;background:#EEF1F3;border:1px solid #D8DFE3;padding:6px 20px 20px">
+          <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+            <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;width:110px;flex:none;padding-top:3px">Scope</dt>
+            <dd style="margin:0;font-size:15px">CAD design and physical build</dd>
+          </div>
+          <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+            <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;width:110px;flex:none;padding-top:3px">Materials</dt>
+            <dd style="margin:0;font-size:15px">Solid wood frame, glass top</dd>
+          </div>
+          <div style="display:flex;gap:20px;padding:12px 0;border-top:1px solid #D8DFE3">
+            <dt style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;width:110px;flex:none;padding-top:3px">Related</dt>
+            <dd style="margin:0;font-size:15px">Collapsible wooden stools, 10'×10' hot tub pad</dd>
+          </div>
+      </dl>
+    </section>
+    <section style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:66%;padding-bottom:8vh">
+      <figure style="margin:0">
+        <div style="border:1px solid #D8DFE3;background:#EEF1F3;overflow:hidden;aspect-ratio:4/3"><img src="images/table-cad.jpg" alt="Coffee table SolidWorks assembly" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+      </figure>
+      <figure style="margin:0">
+        <div style="border:1px solid #D8DFE3;background:#EEF1F3;overflow:hidden;aspect-ratio:4/3"><img src="images/table-shop2.jpg" alt="Frame and glass top dry-fitted in the shop" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+      </figure>
+      <figure style="margin:0">
+        <div style="border:1px solid #D8DFE3;background:#EEF1F3;overflow:hidden;aspect-ratio:4/3"><img src="images/table-shop.jpg" alt="Frame during the shop build" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+      </figure>
+      <figure style="margin:0">
+        <div style="border:1px solid #D8DFE3;background:#EEF1F3;overflow:hidden;aspect-ratio:4/3"><img src="images/table-finished2.jpg" alt="The finished coffee table" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+      </figure>
+    </section>
+    <section style="border-top:1px solid #D8DFE3;padding:26px 0 12vh;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <button onClick="{{ goProjects }}" style="border:1px solid #579C57;background:none;cursor:pointer;padding:13px 22px;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#17181A" style-hover="border-color:#17181A">← Back to projects</button>
+      <button onClick="{{ open0 }}" style="border:1px solid #3F7340;background:#3F7340;color:#FFFFFF;cursor:pointer;padding:13px 22px;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase" style-hover="opacity:.85">Next — Part sorting automated system →</button>
+    </section>
+  </main>
+  </sc-if>
+  <sc-if value="{{ isContact }}">
+  <main style="max-width:1180px;margin:0 auto;padding:0 32px;min-height:76vh;display:flex;align-items:center">
+    <div style="width:100%;padding:12vh 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:56px;align-items:start">
+      <div style="max-width:40ch;display:flex;flex-direction:column;gap:22px">
+        <p style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3F7340;margin:0">Contact</p>
+        <h1 style="font-family:Archivo,Helvetica,Arial,sans-serif;font-size:clamp(34px,5vw,58px);font-weight:400;letter-spacing:-.035em;line-height:1.05;margin:0">Get in touch</h1>
+        
+      </div>
+      <div style="display:grid;gap:0">
+        <a href="mailto:ben@claydon.ca" style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:20px 0;border-top:1px solid #D8DFE3" style-hover="color:#3F7340">
+          <span style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8C8E92">Email</span>
+          <span style="font-family:Archivo,Helvetica,Arial,sans-serif;font-size:clamp(18px,2.2vw,24px);letter-spacing:-.02em">ben@claydon.ca</span>
+        </a>
+        <a href="tel:+14035198525" style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:20px 0;border-top:1px solid #D8DFE3" style-hover="color:#3F7340">
+          <span style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8C8E92">Phone</span>
+          <span style="font-family:Archivo,Helvetica,Arial,sans-serif;font-size:clamp(18px,2.2vw,24px);letter-spacing:-.02em">403 519 8525</span>
+        </a>
+        <a href="{{ linkedinUrl }}" style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:20px 0;border-top:1px solid #D8DFE3" style-hover="color:#3F7340">
+          <span style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8C8E92">LinkedIn</span>
+          <span style="font-family: Archivo,Helvetica,Arial,sans-serif; font-size: clamp(18px,2.2vw,24px); letter-spacing: -.02em; color: #3F7340">Visit Page</span>
+        </a>
+        <a href="Ben-Claydon-Resume.pdf" style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:20px 0;border-top:1px solid #D8DFE3;border-bottom:1px solid #D8DFE3" style-hover="color:#3F7340">
+          <span style="font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8C8E92">Résumé</span>
+          <span style="font-family: Archivo,Helvetica,Arial,sans-serif; font-size: clamp(18px,2.2vw,24px); letter-spacing: -.02em; color: #3F7340">Download PDF</span>
+        </a>
+      </div>
+    </div>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isAI }}">
+  <main style="max-width:1180px;margin:0 auto;padding:0 32px;min-height:76vh;display:flex;align-items:center">
+    <div style="padding:12vh 0;display:flex;flex-direction:column;gap:22px;max-width:60ch">
+      <h1 style="font-family:Archivo,Helvetica,Arial,sans-serif;font-size:clamp(32px,4.6vw,54px);font-weight:400;letter-spacing:-.035em;line-height:1.05;margin:0">AI Disclosure</h1>
+      <p style="font-size:clamp(16.5px,1.7vw,18px);line-height:1.6;color:#3A3C40;margin:0;text-wrap:pretty">Anthropic's Claude Design Tool was used to assist with the creation of this portfolio website.</p>
+      <button onClick="{{ goHome }}" style="background:none;border:0;padding:0 0 2px;cursor:pointer;text-align:left;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:15.5px;color:#3F7340;border-bottom:1px solid #579C57;width:fit-content" style-hover="border-bottom-color:#3F7340">← Back home</button>
+    </div>
+  </main>
+  </sc-if>
+
+  <footer style="border-top:1px solid #579C57;background:#EEF1F3">
+    <div style="max-width:1180px;margin:0 auto;padding:26px 32px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:'IBM Plex Sans',Helvetica,Arial,sans-serif;font-size:11.5px;color:#8C8E92;letter-spacing:.04em">
+      <span>ben.claydon.ca</span>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
+        <span>Ben Claydon · Mechanical Engineering</span>
+        <button onClick="{{ goAI }}" style="background:none;border:0;padding:0;cursor:pointer;font:inherit;letter-spacing:inherit;color:#8C8E92" style-hover="color:#3F7340">AI Disclosure</button>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280},&quot;fontPair&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Technical — Archivo / IBM Plex Sans&quot;,&quot;Geometric — Space Grotesk / Work Sans&quot;,&quot;Editorial — Source Serif / IBM Plex Sans&quot;,&quot;Rounded — Manrope&quot;,&quot;Industrial — Chivo / Work Sans&quot;],&quot;default&quot;:&quot;Technical — Archivo / IBM Plex Sans&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Type&quot;},&quot;showAvailability&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;About&quot;},&quot;availability&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Available for co-op — January 2026&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;About&quot;},&quot;linkedinUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;}}">
+class Component extends DCLogic {
+  state = { page: "home" };
+
+  componentDidMount() { this._lastPage = this.state.page; this.applyFonts(); this.wire(); }
+  componentDidUpdate() {
+    this.applyFonts();
+    if (this._lastPage !== this.state.page) {
+      this._lastPage = this.state.page;
+      const el = document.scrollingElement || document.documentElement;
+      if (el) el.scrollTop = 0;
+      if (document.body) document.body.scrollTop = 0;
+      window.scrollTo(0, 0);
+      this.wire();
+    }
+  }
+  componentWillUnmount() { this.teardown(); }
+
+  teardown() {
+    if (this.io) { this.io.disconnect(); this.io = null; }
+    if (this.raf) { cancelAnimationFrame(this.raf); this.raf = null; }
+    if (this.videoTimer) { clearInterval(this.videoTimer); this.videoTimer = null; }
+    if (this.onScroll) {
+      document.removeEventListener("scroll", this.onScroll, true);
+      window.removeEventListener("scroll", this.onScroll);
+      window.removeEventListener("resize", this.onScroll);
+      this.onScroll = null;
+    }
+    if (this.failsafe) { clearTimeout(this.failsafe); this.failsafe = null; }
+  }
+
+  revealAll() {
+    document.querySelectorAll("[data-reveal]").forEach(el => {
+      el.style.opacity = "1"; el.style.transform = "none";
+    });
+  }
+
+  primeVideos() {
+    const vids = Array.from(document.querySelectorAll("video[data-autoplay]"));
+    if (!vids.length) return;
+    vids.forEach(v => {
+      const play = () => {
+        const p = v.play();
+        if (p && p.catch) p.catch(err => console.info("video autoplay deferred:", err && err.name));
+      };
+      if (v.dataset.primed !== "1") {
+        v.dataset.primed = "1";
+        v.muted = true; v.defaultMuted = true; v.loop = true; v.controls = true; v.playsInline = true;
+        v.addEventListener("pause", () => { if (!v.ended && !v.seeking) v.dataset.userPaused = "1"; });
+        v.addEventListener("play", () => { v.dataset.userPaused = "0"; });
+        v.addEventListener("loadeddata", () => { if (v.dataset.userPaused !== "1") play(); }, { once: true });
+      }
+      if (v.dataset.userPaused === "1") return;
+      // some browsers never begin the fetch from the src attribute alone;
+      // nudge with load() while the element is still at readyState 0.
+      if (v.readyState === 0 && v.networkState !== 3) {
+        const now = Date.now();
+        const last = Number(v.dataset.loadKicked || 0);
+        if (now - last > 2500) { v.dataset.loadKicked = String(now); try { v.load(); } catch (e) {} }
+      } else if (v.paused && v.readyState >= 2) {
+        play();
+      }
+    });
+    if (!this.gestureBound) {
+      this.gestureBound = true;
+      const retry = () => {
+        document.querySelectorAll("video[data-autoplay]").forEach(el => {
+          if (el.dataset.userPaused === "1") return;
+          el.muted = true; el.controls = true;
+          if (el.paused) { const p = el.play(); if (p && p.catch) p.catch(() => {}); }
+        });
+      };
+      ["pointerdown", "keydown", "scroll", "touchstart"].forEach(ev =>
+        document.addEventListener(ev, retry, { passive: true }));
+    }
+  }
+
+  fontPairs() {
+    return {
+      "Technical — Archivo / IBM Plex Sans": ["Archivo", "'IBM Plex Sans'"],
+      "Geometric — Space Grotesk / Work Sans": ["'Space Grotesk'", "'Work Sans'"],
+      "Editorial — Source Serif / IBM Plex Sans": ["'Source Serif 4'", "'IBM Plex Sans'"],
+      "Rounded — Manrope": ["Manrope", "Manrope"],
+      "Industrial — Chivo / Work Sans": ["Chivo", "'Work Sans'"]
+    };
+  }
+
+  applyFonts() {
+    const pairs = this.fontPairs();
+    const key = this.props.fontPair;
+    const pair = pairs[key] || pairs["Technical — Archivo / IBM Plex Sans"];
+    const [display, body] = pair;
+    const css = `body,[style*="IBM Plex Sans"]{font-family:${body},Helvetica,Arial,sans-serif !important}
+[style*="Archivo"]{font-family:${display},Georgia,Helvetica,Arial,sans-serif !important}`;
+    let el = document.getElementById("__font-pair");
+    if (!el) {
+      el = document.createElement("style");
+      el.id = "__font-pair";
+      document.head.appendChild(el);
+    }
+    if (el.textContent !== css) el.textContent = css;
+  }
+
+  update() {
+    const bar = document.querySelector("[data-progress]");
+    const panels = Array.from(document.querySelectorAll("[data-panel]"));
+    const rails = Array.from(document.querySelectorAll("[data-rail]"));
+    if (!bar && !panels.length) return;
+    const doc = document.scrollingElement || document.documentElement;
+    const view = window.innerHeight || doc.clientHeight;
+    if (bar) {
+      const top = doc.scrollTop || window.scrollY || 0;
+      const max = doc.scrollHeight - view;
+      bar.style.width = (max > 0 ? Math.min(100, Math.max(0, (top / max) * 100)) : 0) + "%";
+    }
+    if (panels.length && rails.length) {
+      const mid = view / 2;
+      let active = -1;
+      panels.forEach((p, i) => {
+        const r = p.getBoundingClientRect();
+        if (r.top <= mid && r.bottom >= mid) active = i;
+      });
+      rails.forEach((s, i) => { s.style.color = i === active ? "#17181A" : "#C3C4C0"; });
+    }
+  }
+
+  loop() {
+    this.frame = (this.frame || 0) + 1;
+    if (this.frame % 10 === 1) {
+      try { this.primeVideos(); } catch (e) { console.warn("video prime failed", e); }
+    }
+    try { this.update(); } catch (e) { console.warn("scroll update failed", e); }
+    this.raf = requestAnimationFrame(() => this.loop());
+  }
+
+  wire() {
+    this.teardown();
+    this.onScroll = () => this.update();
+    this.primeVideos();
+    this.videoTimer = setInterval(() => this.primeVideos(), 400);
+    setTimeout(() => { if (this.videoTimer) { clearInterval(this.videoTimer); this.videoTimer = null; } }, 4000);
+    document.addEventListener("scroll", this.onScroll, { capture: true, passive: true });
+    window.addEventListener("scroll", this.onScroll, { passive: true });
+    window.addEventListener("resize", this.onScroll, { passive: true });
+    this.loop();
+    requestAnimationFrame(() => {
+      const reveals = Array.from(document.querySelectorAll("[data-reveal]"));
+      // content is visible by default in the markup; only hide what is safely
+      // below the fold, and always fall back to visible after a moment.
+      if (typeof IntersectionObserver === "function" && reveals.length) {
+        this.io = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              e.target.style.opacity = "1";
+              e.target.style.transform = "none";
+              this.io.unobserve(e.target);
+            }
+          });
+        }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
+        reveals.forEach(el => {
+          const r = el.getBoundingClientRect();
+          if (r.top > window.innerHeight * 0.92) {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(18px)";
+          }
+          this.io.observe(el);
+        });
+        this.failsafe = setTimeout(() => this.revealAll(), 2500);
+      }
+
+      this.primeVideos();
+
+      this.update();
+    });
+  }
+
+  linkedin() {
+    const u = (this.props.linkedinUrl || "").trim();
+    if (!u) return "#";
+    return /^https?:\/\//i.test(u) ? u : "https://" + u.replace(/^\/+/, "");
+  }
+
+  renderVals() {
+    const p = this.state.page;
+    const dim = "#8C8E92", on = "#3F7340";
+    const vals = {
+      isHome: p === "home",
+      isAbout: p === "about", isProjects: p === "projects", isContact: p === "contact",
+      homeColor: p === "home" ? on : dim,
+      aboutColor: p === "about" ? on : dim,
+      projectsColor: (p === "projects" || p.indexOf("p") === 0) ? on : dim,
+      contactColor: p === "contact" ? on : dim,
+      goHome: () => this.setState({ page: "home" }),
+      goAbout: () => this.setState({ page: "about" }),
+      goProjects: () => this.setState({ page: "projects" }),
+      goContact: () => this.setState({ page: "contact" }),
+      isAI: p === "ai",
+      goAI: () => this.setState({ page: "ai" }),
+      showAvailability: this.props.showAvailability ?? true,
+      availability: this.props.availability ?? "Available for co-op — January 2026",
+      linkedinUrl: this.linkedin()
+    };
+    for (let i = 0; i < 6; i++) {
+      vals["isP" + i] = p === "p" + i;
+      vals["open" + i] = () => this.setState({ page: "p" + i });
+    }
+    return vals;
+  }
+}
+</script>
+</body>
+</html>
