@@ -561,13 +561,33 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280},&quot;fontPair&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Technical — Archivo / IBM Plex Sans&quot;,&quot;Geometric — Space Grotesk / Work Sans&quot;,&quot;Editorial — Source Serif / IBM Plex Sans&quot;,&quot;Rounded — Manrope&quot;,&quot;Industrial — Chivo / Work Sans&quot;],&quot;default&quot;:&quot;Technical — Archivo / IBM Plex Sans&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Type&quot;},&quot;showAvailability&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;About&quot;},&quot;availability&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Available for co-op — January 2026&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;About&quot;},&quot;linkedinUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://www.linkedin.com/in/ben-claydon-003432274/&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;}}">
 class Component extends DCLogic {
-  state = { page: "home" };
+  static PAGES = ["home", "about", "projects", "contact", "ai", "p0", "p1", "p2", "p3", "p4", "p5"];
+  pageFromHash() {
+    const h = (window.location.hash || "").replace(/^#\/?/, "");
+    return Component.PAGES.indexOf(h) >= 0 ? h : "home";
+  }
+  state = { page: this.pageFromHash() };
 
-  componentDidMount() { this._lastPage = this.state.page; this.applyFonts(); this.wire(); }
+  componentDidMount() {
+    this._lastPage = this.state.page;
+    this._onPop = () => { const p = this.pageFromHash(); if (p !== this.state.page) { this._fromPop = true; this.setState({ page: p }); } };
+    window.addEventListener("popstate", this._onPop);
+    window.addEventListener("hashchange", this._onPop);
+    this.applyFonts(); this.wire();
+  }
+  componentWillUnmount() {
+    window.removeEventListener("popstate", this._onPop);
+    window.removeEventListener("hashchange", this._onPop);
+  }
   componentDidUpdate() {
     this.applyFonts();
     if (this._lastPage !== this.state.page) {
       this._lastPage = this.state.page;
+      if (!this._fromPop) {
+        const target = this.state.page === "home" ? window.location.pathname + window.location.search : "#" + this.state.page;
+        try { window.history.pushState(null, "", target); } catch (e) {}
+      }
+      this._fromPop = false;
       const el = document.scrollingElement || document.documentElement;
       if (el) el.scrollTop = 0;
       if (document.body) document.body.scrollTop = 0;
